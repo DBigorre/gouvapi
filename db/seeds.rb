@@ -10,13 +10,14 @@ require "open-uri"
 
 Ville.destroy_all
 
-search= "33000"
-url = "https://geo.api.gouv.fr/communes?codePostal=#{search}"
+@search= "78000"
+url = "https://geo.api.gouv.fr/communes?codePostal=#{@search}"
 ville_serialized = URI.open(url).read
 villes = JSON.parse(ville_serialized)
 
 puts "each do"
 
+puts villes
 villes.each do |ville|
   puts "Creating #{ville['nom']}"
   Ville.create!(
